@@ -153,6 +153,13 @@ INSERT INTO files VALUES
 	,(2, 'marketing.key', '$-$')
 	;
 
+TRUNCATE TABLE dependencies CASCADE;
+INSERT INTO dependencies VALUES
+     (1, 'autoexec.bat', 'command.com')
+    ,(1, 'autoexec.bat', 'io.sys')
+    ,(2, 'README.md', 'marketing.key')
+    ;
+
 TRUNCATE TABLE touched_files CASCADE;
 INSERT INTO touched_files VALUES
 	 (1, 1, 1, 'command.com')

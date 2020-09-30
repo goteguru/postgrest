@@ -686,8 +686,22 @@ CREATE TABLE touched_files (
 	FOREIGN KEY (user_id, task_id)
 	REFERENCES users_tasks (user_id, task_id)
 	ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_upload 
+    CONSTRAINT fk_upload
 	FOREIGN KEY (project_id, filename)
+	REFERENCES files (project_id,filename)
+	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE dependencies (
+    project_id integer NOT NULL,
+    dependee_filename text NOT NULL,
+    dependent_filename text NOT NULL,
+    CONSTRAINT fk_dependee
+	FOREIGN KEY (project_id, dependee_filename)
+	REFERENCES files (project_id,filename)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_dependent
+	FOREIGN KEY (project_id, dependent_filename)
 	REFERENCES files (project_id,filename)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );

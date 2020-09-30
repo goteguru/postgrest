@@ -336,6 +336,12 @@ spec actualPgVersion = do
         [json|[{"user_id":1,"files":[{"filename":"command.com","content":"#include <unix.h>"},{"filename":"autoexec.bat","content":"@ECHO OFF"},{"filename":"README.md","content":"# make $$$!"}]}]|]
         { matchHeaders = [matchContentTypeJson] }
 
+    it "requesting recursive many<->many relation using composite keys with shared field" $
+      get "/files?filename=eq.autoexec.bat&project_id=eq.1&select=filename,dependencies:files(filename)" `shouldRespondWith`
+      [json|[{"filename":"autoexec.bat","dependencies":[{"filename":"command.com"},{"filename":"io.sys"}]}]|]
+        { matchHeaders = [matchContentTypeJson] }
+
+
     it "requesting children with composite key" $
       get "/users_tasks?user_id=eq.2&task_id=eq.6&select=*, comments(content)" `shouldRespondWith`
         [json|[{"user_id":2,"task_id":6,"comments":[{"content":"Needs to be delivered ASAP"}]}]|]

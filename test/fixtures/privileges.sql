@@ -43,6 +43,7 @@ GRANT ALL ON TABLE
     , users_projects
     , users_tasks
     , files
+    , dependencies
     , touched_files
     , "Escap3e;"
     , "ghostBusters"
