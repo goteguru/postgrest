@@ -155,9 +155,9 @@ INSERT INTO files VALUES
 
 TRUNCATE TABLE dependencies CASCADE;
 INSERT INTO dependencies VALUES
-     (1, 'autoexec.bat', 'command.com')
-    ,(1, 'autoexec.bat', 'io.sys')
-    ,(2, 'README.md', 'marketing.key')
+     (1, 1, 'autoexec.bat', 'command.com')
+    ,(1, 1, 'autoexec.bat', 'io.sys')
+    ,(2, 2, 'README.md', 'marketing.key')
     ;
 
 TRUNCATE TABLE touched_files CASCADE;

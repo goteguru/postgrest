@@ -693,15 +693,16 @@ CREATE TABLE touched_files (
 );
 
 CREATE TABLE dependencies (
-    project_id integer NOT NULL,
+    project_id1 integer NOT NULL,
+    project_id2 integer NOT NULL,
     dependee_filename text NOT NULL,
     dependent_filename text NOT NULL,
     CONSTRAINT fk_dependee
-	FOREIGN KEY (project_id, dependee_filename)
+	FOREIGN KEY (project_id1, dependee_filename)
 	REFERENCES files (project_id,filename)
 	ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_dependent
-	FOREIGN KEY (project_id, dependent_filename)
+	FOREIGN KEY (project_id2, dependent_filename)
 	REFERENCES files (project_id,filename)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
